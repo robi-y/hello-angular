@@ -1,3 +1,4 @@
+import { MoviesService } from './services/movies.service';
 import { Movie } from './model/movie';
 import { Component } from '@angular/core';
 
@@ -9,35 +10,26 @@ import { Component } from '@angular/core';
 export class AppComponent {
   movies: Movie[];
   selectedMovie: Movie;
+  isBusy: boolean;
 
   selectMovie(movie: Movie): void {
     this.selectedMovie = movie;
   }
 
-  constructor() {
+  constructor(private moviesService: MoviesService) {
     this.selectedMovie = null;
-    this.movies = [
-      {
-        name: 'Pulp Fiction',
-        id: 1,
-        rating: 3.5,
-        imageUrl: 'https://pmd205465tn-a.akamaihd.net/Miramax/279/95/hiamxwYTqGi5jcQNYzQwZxZRYqvKxtw5_h264_3800_640x360_352124483894.jpg'
-      },
-      {
-        name: 'Resrviour Dogs',
-        id: 2,
-        rating: 4.2,
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/e\
-n/7/79/Reservoir_Dogs_Game_PS2_Front_Cover.JPG'
-      },
-      {
-        name: 'Kill Bill',
-        id: 3,
-        rating: 5.5,
-        imageUrl: 'https://upload.wikimedia.org/wikipedia\
-/en/c/cf/Kill_bill_vol_one_ver.jpg'
-      }
-    ];
+    this.movies = [];
+  }
+
+  loadMovies () {
+    this.isBusy = true;
+    this.movies = new Array<Movie>();
+    const promise = this.moviesService.getMoviesSlow();
+
+    promise.then(results => {
+      this.movies = results;
+      this.isBusy = false;
+    } );
   }
 
 }

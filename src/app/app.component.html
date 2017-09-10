@@ -1,5 +1,12 @@
 <h1>My amazing movies app</h1>
 
+<button
+class="btn btn-primary"
+[ngStyle]="{margin:'20px'}"
+ (click)="loadMovies()">Load Movies</button>
+
+<img *ngIf="isBusy" src="https://i.stack.imgur.com/8puiO.gif" height=100px/>
+
 <app-movies-list
   [movies]="movies"
   (selectedMovieChanged)="selectMovie($event)"
