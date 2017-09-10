@@ -1,0 +1,8 @@
+.kobis-list {
+  width: 300px;
+  margin: 20px;
+}
+
+li:hover {
+  background-color: lightblue;
+}

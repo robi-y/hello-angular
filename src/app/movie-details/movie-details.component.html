@@ -1,0 +1,15 @@
+<div
+  *ngIf="selectedMovie != null"
+  class="panel panel-primary main"
+  >
+  <div class="panel-heading">
+    {{selectedMovie.name}}
+  </div>
+  <div>
+    <img [src]="selectedMovie.imageUrl"
+      />
+  </div>
+  <div class="panel-footer">
+    Rating: {{selectedMovie.rating}}
+  </div>
+</div>
