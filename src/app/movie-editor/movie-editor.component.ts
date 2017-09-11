@@ -1,4 +1,5 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { Validator } from 'codelyzer/walkerFactory/walkerFn';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,17 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieEditorComponent implements OnInit {
 
+  private urlMatcher = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
   movieForm = new FormGroup({
-    'name': new FormControl(null),
-    'imageUrl': new FormControl(null)
+    'name': new FormControl(null, Validators.required),
+    'imageUrl': new FormControl(null, [Validators.required, Validators.pattern(this.urlMatcher)])
   });
 
   constructor() { }
 
   onSubmit(): void {
     console.log(this.movieForm.value);
-
   }
+
   ngOnInit() {
   }
 
