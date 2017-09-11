@@ -7,6 +7,8 @@ class="btn btn-primary"
 
 <img *ngIf="isBusy" src="https://i.stack.imgur.com/8puiO.gif" height=100px/>
 
+<app-movie-editor></app-movie-editor>
+
 <app-movies-list
   [movies]="movies"
   (selectedMovieChanged)="selectMovie($event)"
