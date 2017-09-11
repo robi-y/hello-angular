@@ -1,12 +1,15 @@
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Movie } from './../model/movie';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class MoviesService {
 
 private movies: Array<Movie>;
+private moviesUrl =  'http://localhost:57993/api/movies';
 
-  constructor() {
+  constructor(private http: Http) {
     const res = new Array<Movie>();
     res.push({
       name: 'Pulp Fiction',
@@ -30,13 +33,13 @@ n/7/79/Reservoir_Dogs_Game_PS2_Front_Cover.JPG'
     });
     this.movies = res;
 
-}
+  }
 
   getMoviesLocal(): Array<Movie>  {
     return this.movies;
   }
 
-  getMovies(): Promise<Array<Movie>>  {
+  getMoviesPromise(): Promise<Array<Movie>>  {
         return Promise.resolve(this.movies);
   }
 
@@ -47,5 +50,17 @@ n/7/79/Reservoir_Dogs_Game_PS2_Front_Cover.JPG'
       }, 3000);
     });
     return p;
-}
+  }
+
+  getMovies(): Promise<Array<Movie>>  {
+    const observable = this.http.get(this.moviesUrl);
+    const promise = observable.toPromise();
+    const result = promise.then(resp => {
+
+      return resp.json() as Array<Movie>;
+    });
+
+    return result;
+  }
+
 }

@@ -24,7 +24,7 @@ export class AppComponent {
   loadMovies () {
     this.isBusy = true;
     this.movies = new Array<Movie>();
-    const promise = this.moviesService.getMoviesSlow();
+    const promise = this.moviesService.getMovies();
 
     promise.then(results => {
       this.movies = results;
