@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Movies.Controllers
 {
     [RoutePrefix("api/movies")]
+    [EnableCors(origins:"http://localhost:4200", headers:"*", methods:"*")]
     public class MoviesController : ApiController
     {
         [HttpGet]
@@ -20,8 +23,9 @@ namespace Movies.Controllers
 
         [HttpGet]
         [Route("")]
-        public IHttpActionResult GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
+            await Task.Delay(4000);
             return Ok(Repository.Instance.All);
         }
 
