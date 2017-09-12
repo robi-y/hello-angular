@@ -1,35 +1,15 @@
 import { MoviesService } from './services/movies.service';
-import { Movie } from './model/movie';
-import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 
+import { Component } from '@angular/core';
+import { Movie } from './model/movie';
+// decorate defined at class AppComponent to component
+// Component defined new elment in html
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  movies: Movie[];
-  selectedMovie: Movie;
-  isBusy: boolean;
-
-  selectMovie(movie: Movie): void {
-    this.selectedMovie = movie;
-  }
-
-  constructor(private moviesService: MoviesService) {
-    this.selectedMovie = null;
-    this.movies = [];
-  }
-
-  loadMovies () {
-    this.isBusy = true;
-    this.movies = new Array<Movie>();
-    const promise = this.moviesService.getMovies();
-
-    promise.then(results => {
-      this.movies = results;
-      this.isBusy = false;
-    } );
-  }
-
 }
+

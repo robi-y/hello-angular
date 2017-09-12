@@ -1,10 +1,13 @@
-<ul class="list-group kobis-list">
-  <li
-  *ngFor="let movie of movies"
-  class="list-group-item"
-  [class.active]="selectedMovie==movie"
-  (click)="selectMovie(movie)">
-    <span>{{movie.id}}</span>
-    <span>{{movie.name}}</span>
-  </li>
-</ul>
+<ul class= "list-group kobis-list" >
+    <!-- directive -->
+    <li
+    *ngFor="let movie of movies"
+    class="list-group-item "
+    (click)="selectMovie(movie)"
+    [class.active]="selectedMovie==movie"
+    >
+      <span>{{movie.id}}</span>
+      <span>{{movie.name}}</span>
+      <!-- <img src= {{movie.imageUrl}}/> -->
+    </li>
+  </ul>
