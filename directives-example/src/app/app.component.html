@@ -1,0 +1,31 @@
+<ul>
+  <li>{{title | uppercase}}</li>
+  <li>{{title | lowercase}}</li>
+  <li>{{birthdate | date : "dd-MM-yyyy"}}</li>
+  <li>{{num}}</li>
+  <li>{{num | currency : 'nis'}}</li>
+  <li>{{items | json}}</li>
+  <li>{{obj | json}}</li>
+  <li>{{title | myCustom}}</li>
+  <li>{{title | uppercase | myCustom | myCustom}}</li>
+  <li>{{numbers}}</li>
+  <li>{{numbers | evens}}</li>
+</ul>
+
+
+<hr/>
+
+
+<h1>Hello World</h1>
+<h2 [appBasicHighlight]="'yellow'">We will now use directives</h2>
+<ul>
+  <li>Item number 1</li>
+  <li [appBasicHighlight]="'pink'"
+    [off]="'red'">Item number 2</li>
+  <li>Item number 3</li>
+</ul>
+
+<input
+  type="Text"
+  appOnlyEnglish
+  />
